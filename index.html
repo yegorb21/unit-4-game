@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- i cannot for the life of me get my separate js file to link to the html, had to put it back in -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="javascript/game.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="title">
+            <h1>CrystalsCollector!</h1>
+        </div>
+
+        <div id="instructions">Instructions: Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti molestiae impedit
+            adipisci
+            eaque repellat repudiandae nam, corrupti dolorem exercitationem sapiente facere quae autem porro, at
+            architecto
+            laboriosam et quisquam tempora!</div>
+
+        <div id="randonNum">something</div>
+
+        <div id="winLoss">
+            <div id="resultMsg"></div>
+            <div id="wins">Wins: 0</div>
+            <div id="losses">Losses: 0</div>
+        </div>
+
+        <div class="row">
+            <!-- why is html/css the hard part ): -->
+            <!-- why is this not showing up in separate columns -->
+            <div class="col gem1 gem" value="">
+                GEM1
+            </div>
+
+            <div class="col gem2 gem" value="">
+                GEM2
+            </div>
+
+            <div class="col gem3 gem" value="">
+                GEM3
+            </div>
+
+            <div class="col gem4 gem" value="">
+                GEM4
+            </div>
+        </div>
+
+        <div id="totalScoreText">Your total score is:</div>
+
+        <div id="totalScore">0</div>
+
+    </div>
+
+    <script>
+
+        function RandomIntFromInterval(min, max) // min and max included
+        {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        var computerNum
+        var gem1
+        var gem2
+        var gem3
+        var gem4
+
+        var totalScore
+
+        var wins = 0
+        var losses = 0
+
+        ResetVars()
+
+
+        $(".gem").click(function () {
+            var gemVal = parseInt($(this).attr("value"))
+            totalScore = Number(totalScore + gemVal)
+
+            $("#totalScore").text(totalScore)
+
+            if (totalScore == computerNum) {
+                YouWin()
+            } else if (totalScore > computerNum) {
+                YouLose()
+            }
+        })
+
+
+        function YouWin() {
+            wins++
+            $("#resultMsg").text("You won!!")
+            $("#wins").text("Wins: " + wins)
+            ResetVars()
+        }
+
+        function YouLose() {
+            losses++
+            $("#resultMsg").text("You lost!!")
+            $("#losses").text("Losses: " + losses)
+            ResetVars()
+        }
+
+        function ResetVars() {
+            computerNum = RandomIntFromInterval(19, 120)
+            gem1 = RandomIntFromInterval(1, 12)
+            gem2 = RandomIntFromInterval(1, 12)
+            gem3 = RandomIntFromInterval(1, 12)
+            gem4 = RandomIntFromInterval(1, 12)
+
+            totalScore = 0
+
+            $(".gem1").attr("value", gem1)
+            $(".gem2").attr("value", gem2)
+            $(".gem3").attr("value", gem3)
+            $(".gem4").attr("value", gem4)
+
+            $("#randonNum").text(computerNum)
+            $("#totalScore").text(0)
+        }
+
+    </script>
+
+
+</body>
+
+</html>
