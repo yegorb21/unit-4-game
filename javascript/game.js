@@ -1,3 +1,5 @@
+// couldnt figure out how to link this JS to my html, the code is baked intot he html bc of that
+
 function RandomIntFromInterval(min, max) // min and max included
 {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -41,7 +43,7 @@ function YouWin() {
 function YouLose() {
     losses++
     $("#resultMsg").text("You lost!!")
-    $("#losses").text("Losses: " + wins)
+    $("#losses").text("Losses: " + losses)
     ResetVars()
 }
 
